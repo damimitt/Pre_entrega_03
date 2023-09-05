@@ -12,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    {% if mi_formulario.errors %}
+{% if mi_formulario.errors %}
 
 <p style='color: red'> Los datos estan mal, verificar</p>
 
@@ -23,7 +23,7 @@
     <table>
         {{mi_formulario.as_table}}
     </table>
-    <input type = 'submit' value='Enviar'>
+    <input type = 'submit' value='Registrar'>
 </form>
     
 </body>
