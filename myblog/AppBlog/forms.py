@@ -2,11 +2,9 @@ from django import forms
 
 class CursoFormulario(forms.Form):
     nombre = forms.CharField()
-    camada = forms.CharField()
+    camada = forms.IntegerField()
     
-class EstudiantesFormulario(forms.Form):
-    
+class AlumnoFormulario(forms.Form):
     nombre = forms.CharField()
     apellido = forms.CharField()
-    email = forms.EmailField()
-    profesion = forms.CharField()
+    

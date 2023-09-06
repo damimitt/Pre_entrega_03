@@ -20,10 +20,9 @@ ls<!DOCTYPE html>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">                
-                <a class="navbar-brand" href={% url 'inicio' %}>Inicio</a>
-                <a class="navbar-brand" href={% url 'cursos' %}>Cursos</a>
-                <a class="navbar-brand" href={% url 'entregables' %}>Entregables</a>
-                <a class="navbar-brand" href={% url 'estudiantes' %}>Estudiantes</a>
+                <a class="navbar-brand" href={% url 'index' %}>Inicio</a>
+                <a class="navbar-brand" href={% url 'consulta_cursos' %}>Consultar Cursos</a>
+                <a class="navbar-brand" href={% url 'registro_cursos' %}>Registrar Cursos</a>
                 <a class="btn btn-primary" href="#signup">Sign Up</a>
             </div>
         </nav>
@@ -46,15 +45,6 @@ ls<!DOCTYPE html>
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
                             <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- Email address input-->
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                                </div>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
@@ -88,6 +78,9 @@ ls<!DOCTYPE html>
         
         {% endblock contenidoQueCambia %}
         
+        <a href={% url 'index' %}>
+            <button>Volver a Inicio</button>
+        </a>
         
         
         <!-- Footer-->

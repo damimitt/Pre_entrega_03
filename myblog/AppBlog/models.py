@@ -2,21 +2,18 @@ from django.db import models
 
 # Create your models here.
 
-class cursos(models.Model):
+class Cursos(models.Model):
     
     nombre = models.CharField(max_length=200)
     camada = models.IntegerField()
     
-class estudiantes(models.Model):
+    def __str__(self):
+        return f"{self.nombre} ({self.camada})"
     
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    email = models.EmailField()
-    profesion = models.CharField(max_length=30)
+class Alumno(models.Model):
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
     
-class entregables(models.Model):
-    
-    titulo_trabajo = models.CharField(max_length=50)
-    fecha_entrega = models.DateField()
-    entregado = models.BooleanField()
+    def __str__(self):
+        return f"{self.nombre} ({self.apellido})"
     

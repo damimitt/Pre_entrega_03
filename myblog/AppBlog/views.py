@@ -1,13 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import CursoFormulario, EstudiantesFormulario
+from .forms import *
 from .models import *
 
 # Create your views here.
 def inicio(request):
-    return render(request,'AppBlog/inicio.html')
+    return render(request,'index')
 
-def cursos_formulario(request):
+
+
+def cursos(request):
+    return render(request,'AppBlog/consulta_cursos.html')
+
+
+def registro_cursos(request):
     if request.method == 'POST':
         mi_formulario = CursoFormulario(request.POST)
         
@@ -17,37 +23,41 @@ def cursos_formulario(request):
             
             informacion = mi_formulario.cleaned_data
             
-            curso = cursos(nombre=informacion['nombre'], camada=informacion['camada'])
+            curso = Cursos(nombre=informacion['nombre'], camada=informacion['camada'])
             
             curso.save()
             return render(request,'AppBlog/guardado_exito.html')
     else:
         mi_formulario = CursoFormulario()
-        return render(request,'AppBlog/cursos.html', {'mi_formulario': mi_formulario})
+        return render(request,'AppBlog/registro_cursos.html', {'mi_formulario': mi_formulario})
 
-def entregables(request):
-    return render(request,'AppBlog/entregables.html')
 
-def estudiantes3(request):
-    return render(request,'AppBlog/estudiantes.html')
+
+
+def registro_alumnos(request):
+    if request.method == 'GET':
+        mi_formulario = AlumnoFormulario()
+        return render(request,
+                      'AppBlog/registro_alumnos.html',
+                      {'mi_formulario' : AlumnoFormulario()})
+    else:
+        mi_formulario = AlumnoFormulario(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            modelo = Alumno(
+                        nombre = informacion['nombre'],
+                        apellido = informacion['apellido']
+                        )
+            modelo.save()
+        return redirect('guardado_con_exito')
+
+
+
+
 
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 
-def estudiantes_formulario(request):
-    if request.method == 'POST':
-        mi_formulario = EstudiantesFormulario(request.POST)
-        
-        print(mi_formulario)
-        
-        if mi_formulario.is_valid():
-            
-            informacion = mi_formulario.cleaned_data
-            
-            curso = estudiantes(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'], profesion=informacion['profesion'])
-            
-            curso.save()
-            return render(request,'AppBlog/guardado_exito.html')
-    else:
-        mi_formulario = EstudiantesFormulario()
-        return render(request,'AppBlog/estudiantes.html', {'mi_formulario': mi_formulario})
+def guardado_con_exito(request):
+    return render(request,'AppBlog/guardado_exito.html')
+
