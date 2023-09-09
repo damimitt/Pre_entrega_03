@@ -7,31 +7,27 @@ from .models import *
 def inicio(request):
     return render(request,'index')
 
-
-
-def cursos(request):
-    return render(request,'AppBlog/consulta_cursos.html')
-
+def consultar_cursos(request):
+    cursos = Cursos.objects.all()
+    print(cursos)
+    return render(request,'AppBlog/consulta_cursos.html', {'cursos' : cursos} )
 
 def registro_cursos(request):
-    if request.method == 'POST':
-        mi_formulario = CursoFormulario(request.POST)
-        
-        print(mi_formulario)
-        
-        if mi_formulario.is_valid():
-            
-            informacion = mi_formulario.cleaned_data
-            
-            curso = Cursos(nombre=informacion['nombre'], camada=informacion['camada'])
-            
-            curso.save()
-            return render(request,'AppBlog/guardado_exito.html')
-    else:
+    if request.method == 'GET':
         mi_formulario = CursoFormulario()
-        return render(request,'AppBlog/registro_cursos.html', {'mi_formulario': mi_formulario})
-
-
+        return render(request,
+                    'AppBlog/registro_cursos.html',
+                    {'mi_formulario': CursoFormulario()})
+    else:
+        mi_formulario = CursoFormulario(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            modelo = Cursos(
+                            nombre = informacion['nombre'],
+                            camada = informacion['camada']                
+            )
+            modelo.save()
+        return redirect('guardado_con_exito')
 
 
 def registro_alumnos(request):
@@ -50,11 +46,8 @@ def registro_alumnos(request):
                         )
             modelo.save()
         return redirect('guardado_con_exito')
-
-
-
-
-
+    
+    
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 

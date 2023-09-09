@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 @admin.register(Cursos)
-class CursoAdmin(admin.ModelAdmin):
+class CursosAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Alumno)
