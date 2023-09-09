@@ -8,9 +8,9 @@ def inicio(request):
     return render(request,'index')
 
 def consultar_cursos(request):
-    cursos = Cursos.objects.all()
-    print(cursos)
-    return render(request,'AppBlog/consulta_cursos.html', {'cursos' : cursos} )
+    curso = Cursos.objects.all()
+    print(curso)
+    return render(request,"AppBlog/consulta_cursos.html", {"curso" : curso})
 
 def registro_cursos(request):
     if request.method == 'GET':
