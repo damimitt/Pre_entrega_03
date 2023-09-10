@@ -8,3 +8,7 @@ class AlumnoFormulario(forms.Form):
     nombre = forms.CharField()
     apellido = forms.CharField()
     
+class ProfesoresFormulario(forms.Form):
+    nombre = forms.CharField()
+    apellido = forms.CharField()
+    

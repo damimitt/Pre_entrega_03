@@ -1,0 +1,50 @@
+{% extends 'AppBlog/Padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .formulario-container {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .formulario-error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    {% if mi_formulario.errors %}
+    <p class="formulario-error">Los datos están mal, verificar</p>
+    {% endif %}
+
+    <div class="formulario-container">
+        <form action="{% url 'registro_profesores' %}" method="post">
+            {% csrf_token %}
+            <table>
+                {{ mi_formulario.as_table }}
+            </table>
+            <input type="submit" value="Registrar">
+        </form>
+    </div>
+</body>
+</html>
+
+
+   
+        
+        
+{% endblock contenidoQueCambia %}

@@ -48,6 +48,23 @@ def registro_alumnos(request):
         return redirect('guardado_con_exito')
     
     
+def registro_profesores(request):
+    if request.method == 'GET':
+        mi_formulario = ProfesoresFormulario()
+        return render(request,
+                      'AppBlog/registro_profesores.html',
+                      {'mi_formulario' : ProfesoresFormulario()})
+    else:
+        mi_formulario = ProfesoresFormulario(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            modelo = Profesores(
+                        nombre = informacion['nombre'],
+                        apellido = informacion['apellido']
+                        )
+            modelo.save()
+        return redirect('guardado_con_exito')
+    
 def inicio(request):
     return render(request,'AppBlog/inicio.html')
 
