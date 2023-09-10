@@ -10,7 +10,7 @@ def inicio(request):
 def consultar_cursos(request):
     curso = Cursos.objects.all()
     print(curso)
-    return render(request,"AppBlog/consulta_cursos.html", {"curso" : curso})
+    return render(request,"AppBlog/consulta_cursos.html", {"value" : curso})
 
 def registro_cursos(request):
     if request.method == 'GET':
